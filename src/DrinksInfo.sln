@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinksInfo", "DrinksInfo\DrinksInfo.csproj", "{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinksInfo.ConsoleApp", "DrinksInfo.ConsoleApp\DrinksInfo.ConsoleApp.csproj", "{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70CD919F-DE6A-420A-A003-4BEFB1C1999D}
+	EndGlobalSection
+EndGlobal
