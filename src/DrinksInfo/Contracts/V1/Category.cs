@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DrinksInfo.Contracts;
+namespace DrinksInfo.Contracts.V1;
 
 public class Category
 {

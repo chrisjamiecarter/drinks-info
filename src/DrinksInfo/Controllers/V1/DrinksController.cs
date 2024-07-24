@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using DrinksInfo.Contracts;
 using DrinksInfo.Contracts.V1;
 using Newtonsoft.Json;
 using RestSharp;
@@ -8,71 +7,67 @@ namespace DrinksInfo.Controllers.V1;
 
 public class DrinksController
 {
-    public static List<Category> GetCategories()
+    public static IReadOnlyList<Category> GetCategories()
     {
-        List<Category> categories = [];
+        IReadOnlyList<Category> output = [];
 
         using var client = new RestClient();
 
-        var request = new RestRequest(ApiRoutes.Categories.GetAll);
+        var request = new RestRequest(ApiRoutes.GetCategories);
         var reponse = client.ExecuteAsync(request);
 
         if (reponse.Result.StatusCode is System.Net.HttpStatusCode.OK)
         {
-            categories = JsonConvert.DeserializeObject<Categories>(reponse.Result.Content!)!.CategoriesList!;
+            output = JsonConvert.DeserializeObject<Categories>(reponse.Result.Content!)!.Values!;
         }
 
-        return categories;
+        return output;
     }
 
-    public static List<Drink> GetDrinksByCategory(string category)
+    public static IReadOnlyList<Drink> GetDrinksByCategory(string category)
     {
-        List<Drink> drinks = [];
+        IReadOnlyList<Drink> output = [];
 
         using var client = new RestClient();
 
-        var request = new RestRequest(ApiRoutes.Drinks.GetByCategory.Replace("{category}", HttpUtility.UrlEncode(category)));
+        var request = new RestRequest(ApiRoutes.GetDrinksByCategory.Replace("{category}", HttpUtility.UrlEncode(category)));
         var reponse = client.ExecuteAsync(request);
 
         if (reponse.Result.StatusCode is System.Net.HttpStatusCode.OK)
         {
-            drinks = JsonConvert.DeserializeObject<Drinks>(reponse.Result.Content!)!.DrinksList!;
+            output = JsonConvert.DeserializeObject<Drinks>(reponse.Result.Content!)!.Values!;
         }
 
-        return drinks;
+        return output;
     }
 
-    public static DrinkDetail? GetDrinkDetail(string drinkId)
+    public static Drink? GetDrink(string drinkId)
     {
-        List<DrinkDetail> drinkDetails = [];
-
-        using var client = new RestClient();
-
-        var request = new RestRequest(ApiRoutes.Drinks.Get.Replace("{drinkId}", HttpUtility.UrlEncode(drinkId)));
-        var reponse = client.ExecuteAsync(request);
-
-        if (reponse.Result.StatusCode is System.Net.HttpStatusCode.OK)
-        {
-            drinkDetails = JsonConvert.DeserializeObject<DrinkDetails>(reponse.Result.Content!)!.DrinkDetailsList!;
-        }
-
-        return drinkDetails.FirstOrDefault();
+        var request = new RestRequest(ApiRoutes.GetDrink.Replace("{drinkId}", HttpUtility.UrlEncode(drinkId)));
+        
+        return GetDrink(request);
     }
 
-    public static DrinkDetail? GetRandomDrinkDetail()
+    public static Drink? GetRandomDrink()
     {
-        List<DrinkDetail> drinkDetails = [];
+        var request = new RestRequest(ApiRoutes.GetRandomDrink);
+        
+        return GetDrink(request);
+    }
+
+    private static Drink? GetDrink(RestRequest request)
+    {
+        List<Drink> output = [];
 
         using var client = new RestClient();
 
-        var request = new RestRequest(ApiRoutes.Drinks.GetRandom);
         var reponse = client.ExecuteAsync(request);
 
         if (reponse.Result.StatusCode is System.Net.HttpStatusCode.OK)
         {
-            drinkDetails = JsonConvert.DeserializeObject<DrinkDetails>(reponse.Result.Content!)!.DrinkDetailsList!;
+            output = JsonConvert.DeserializeObject<Drinks>(reponse.Result.Content!)!.Values!;
         }
 
-        return drinkDetails.FirstOrDefault();
+        return output.FirstOrDefault();
     }
 }
