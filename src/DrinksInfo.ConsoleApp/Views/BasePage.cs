@@ -1,6 +1,5 @@
-﻿using Spectre.Console;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text;
+using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
 

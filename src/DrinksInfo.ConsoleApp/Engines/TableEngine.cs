@@ -5,8 +5,13 @@ using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Engines;
 
+/// <summary>
+/// Engine for Spectre.Table generation.
+/// </summary>
 internal class TableEngine
 {
+    #region Methods
+
     internal static Table GetCategoriesTable(IReadOnlyList<Category> categories)
     {
         Table table = new Table();
@@ -38,8 +43,8 @@ internal class TableEngine
     /// Generates the drink table.
     /// NOTE: Transposes the table and removes any null values.
     /// </summary>
-    /// <param name="drink"></param>
-    /// <returns></returns>
+    /// <param name="drink">The drink object to generate the properties into a table.</param>
+    /// <returns>The generated spectre table object.</returns>
     internal static Table GetDrinkTable(Drink drink)
     {
         Table table = new Table();
@@ -59,7 +64,7 @@ internal class TableEngine
         table.AddColumn("Key");
         table.AddColumn("Value");
         table.HideHeaders();
-        
+
         // Add each key value pair to a row.
         foreach (var kvp in tableData)
         {
@@ -71,4 +76,6 @@ internal class TableEngine
 
         return table;
     }
+
+    #endregion
 }

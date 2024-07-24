@@ -5,6 +5,9 @@ using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
 
+/// <summary>
+/// A page to displays a list of categories for selection.
+/// </summary>
 internal class SelectCategoryNamePage : BasePage
 {
     #region Constants
