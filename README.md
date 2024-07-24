@@ -1,6 +1,6 @@
 # Drinks Info
 
-![drinks info logo](./_resources/drinks-info-logo.png){ width="100px" }
+![drinks info logo](./_resources/drinks-info-logo.png)
 
 Welcome to the **Drinks Info** App!
 
