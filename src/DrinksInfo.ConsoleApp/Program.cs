@@ -1,45 +1,22 @@
-﻿using DrinksInfo.ConsoleApp.Engines;
-using DrinksInfo.ConsoleApp.Services;
-using DrinksInfo.Controllers.V1;
-using DrinksInfo.Services;
-using Spectre.Console;
+﻿using DrinksInfo.ConsoleApp.Views;
 
 namespace DrinksInfo.ConsoleApp;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        var categories = DrinksController.GetCategories();
-        TableVisualisationEngine.ShowCategories(categories);
-
-        string category = UserInputService.GetCategoriesInput();
-        while (!InputValidationService.IsValidCategory(category, categories))
+        try
         {
-            AnsiConsole.WriteLine("Invalid category");
-            category = UserInputService.GetCategoriesInput();
+            MainMenuPage.Show();
         }
-
-        var drinks = DrinksController.GetDrinksByCategory(category);
-        TableVisualisationEngine.ShowDrinks(drinks);
-
-        string drink = UserInputService.GetDrinksInput();
-        while (!InputValidationService.IsValidDrink(drink, drinks))
+        catch (Exception exception)
         {
-            AnsiConsole.WriteLine("Invalid drink");
-            drink = UserInputService.GetDrinksInput();
+            MessagePage.Show("Error", exception);
         }
-
-        var drinkDetail = DrinksController.GetDrinkDetail(drinks.First(x => x.Name!.Equals(drink)).Id!);
-        TableVisualisationEngine.ShowDrinkDetail(drinkDetail!);
-
-        Console.ReadKey();
-
-        var randomDrinkDetail = DrinksController.GetRandomDrinkDetail();
-        TableVisualisationEngine.ShowDrinkDetail(randomDrinkDetail!);
-
-
-        Console.ReadKey();
-
+        finally
+        {
+            Environment.Exit(0);
+        }
     }
 }
