@@ -1,12 +1,12 @@
 ﻿using DrinksInfo.Contracts;
-using DrinksInfo.Services;
+using DrinksInfo.Controllers.V1;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Services;
 
 internal class UserInputService
 {
-    DrinksService drinksService = new();
+    DrinksController drinksService = new();
 
     internal static string GetCategoriesInput()
     {

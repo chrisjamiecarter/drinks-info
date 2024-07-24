@@ -1,5 +1,6 @@
 ﻿using DrinksInfo.ConsoleApp.Engines;
 using DrinksInfo.ConsoleApp.Services;
+using DrinksInfo.Controllers.V1;
 using DrinksInfo.Services;
 using Spectre.Console;
 
@@ -9,9 +10,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var drinksService = new DrinksService();
-
-        var categories = drinksService.GetCategories();
+        var categories = DrinksController.GetCategories();
         TableVisualisationEngine.ShowCategories(categories);
 
         string category = UserInputService.GetCategoriesInput();
@@ -21,7 +20,7 @@ internal class Program
             category = UserInputService.GetCategoriesInput();
         }
 
-        var drinks = drinksService.GetDrinksByCategory(category);
+        var drinks = DrinksController.GetDrinksByCategory(category);
         TableVisualisationEngine.ShowDrinks(drinks);
 
         string drink = UserInputService.GetDrinksInput();
@@ -31,8 +30,16 @@ internal class Program
             drink = UserInputService.GetDrinksInput();
         }
 
-        var drinkDetail = drinksService.GetDrinkDetail(drinks.First(x => x.Name!.Equals(drink)).Id!);
-        TableVisualisationEngine.ShowDrinkDetail(drinkDetail);
+        var drinkDetail = DrinksController.GetDrinkDetail(drinks.First(x => x.Name!.Equals(drink)).Id!);
+        TableVisualisationEngine.ShowDrinkDetail(drinkDetail!);
+
+        Console.ReadKey();
+
+        var randomDrinkDetail = DrinksController.GetRandomDrinkDetail();
+        TableVisualisationEngine.ShowDrinkDetail(randomDrinkDetail!);
+
+
+        Console.ReadKey();
 
     }
 }
