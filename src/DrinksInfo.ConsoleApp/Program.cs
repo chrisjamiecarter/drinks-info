@@ -4,6 +4,10 @@ namespace DrinksInfo.ConsoleApp;
 
 internal class Program
 {
+    /// <summary>
+    /// Insertion point for the application.
+    /// Launches the main menu; catches and displays any errors.
+    /// </summary>
     static void Main()
     {
         try

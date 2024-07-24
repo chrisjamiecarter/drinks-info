@@ -5,8 +5,13 @@ using RestSharp;
 
 namespace DrinksInfo.Controllers.V1;
 
+/// <summary>
+/// A controller for all drink related API calls.
+/// </summary>
 public class DrinksController
 {
+    #region Methods - Public
+
     public static IReadOnlyList<Category> GetCategories()
     {
         IReadOnlyList<Category> output = [];
@@ -44,16 +49,19 @@ public class DrinksController
     public static Drink? GetDrink(string drinkId)
     {
         var request = new RestRequest(ApiRoutes.GetDrink.Replace("{drinkId}", HttpUtility.UrlEncode(drinkId)));
-        
+
         return GetDrink(request);
     }
 
     public static Drink? GetRandomDrink()
     {
         var request = new RestRequest(ApiRoutes.GetRandomDrink);
-        
+
         return GetDrink(request);
     }
+
+    #endregion
+    #region Methods - Private
 
     private static Drink? GetDrink(RestRequest request)
     {
@@ -70,4 +78,6 @@ public class DrinksController
 
         return output.FirstOrDefault();
     }
+
+    #endregion
 }

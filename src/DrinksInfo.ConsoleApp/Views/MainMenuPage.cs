@@ -2,12 +2,13 @@
 using DrinksInfo.ConsoleApp.Enums;
 using DrinksInfo.ConsoleApp.Models;
 using DrinksInfo.ConsoleApp.Services;
-using DrinksInfo.Contracts.V1;
-using DrinksInfo.Controllers.V1;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
 
+/// <summary>
+/// The main menu page of the application.
+/// </summary>
 internal class MainMenuPage : BasePage
 {
     #region Constants

@@ -1,11 +1,13 @@
 ﻿using DrinksInfo.ConsoleApp.Models;
 using DrinksInfo.ConsoleApp.Services;
 using DrinksInfo.Contracts.V1;
-using DrinksInfo.Controllers.V1;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
 
+/// <summary>
+/// A page to displays a list of drinks for selection.
+/// </summary>
 internal class SelectDrinkPage : BasePage
 {
     #region Constants
@@ -32,7 +34,7 @@ internal class SelectDrinkPage : BasePage
     /// <summary>
     /// Gets a list of drinks from the drinks controller for a given category and displays for user selection.
     /// </summary>
-    /// <param name="category"></param>
+    /// <param name="category">The category of the drinks to be displayed.</param>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
     internal static Drink? Show(string category)
     {

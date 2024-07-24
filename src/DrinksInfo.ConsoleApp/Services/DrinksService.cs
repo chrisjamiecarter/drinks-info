@@ -15,6 +15,7 @@ internal static class DrinksService
     internal static Drink? GetDrink(string drinkId)
     {
         Drink? drink = null;
+
         AnsiConsole.Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting selected drink. Please wait...", ctx =>
@@ -28,24 +29,28 @@ internal static class DrinksService
     internal static IReadOnlyList<Drink> GetDrinksByCategory(string category)
     {
         IReadOnlyList<Drink> drinks = [];
+
         AnsiConsole.Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting drinks. Please wait...", ctx =>
             {
                 drinks = DrinksController.GetDrinksByCategory(category);
             });
+
         return drinks;
     }
 
     internal static Drink? GetRandomDrink()
     {
         Drink? drink = null;
+
         AnsiConsole.Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting random drink. Please wait...", ctx =>
             {
                 drink = DrinksController.GetRandomDrink();
             });
+
         return drink;
     }
 
