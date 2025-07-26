@@ -10,8 +10,6 @@ namespace DrinksInfo.Controllers.V1;
 /// </summary>
 public class DrinksController
 {
-    #region Methods - Public
-
     public static IReadOnlyList<Category> GetCategories()
     {
         IReadOnlyList<Category> output = [];
@@ -60,9 +58,6 @@ public class DrinksController
         return GetDrink(request);
     }
 
-    #endregion
-    #region Methods - Private
-
     private static Drink? GetDrink(RestRequest request)
     {
         List<Drink> output = [];
@@ -78,6 +73,4 @@ public class DrinksController
 
         return output.FirstOrDefault();
     }
-
-    #endregion
 }

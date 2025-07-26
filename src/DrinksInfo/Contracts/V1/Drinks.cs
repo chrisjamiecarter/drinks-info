@@ -7,10 +7,6 @@ namespace DrinksInfo.Contracts.V1;
 /// </summary>
 public class Drinks
 {
-    #region Properties
-
     [JsonProperty("drinks")]
     public List<Drink>? Values { get; set; }
-
-    #endregion
 }

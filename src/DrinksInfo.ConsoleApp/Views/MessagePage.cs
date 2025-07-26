@@ -7,8 +7,6 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// </summary>
 internal class MessagePage : BasePage
 {
-    #region Methods
-
     internal static void Show(string title, Exception exception)
     {
         AnsiConsole.Clear();
@@ -30,6 +28,4 @@ internal class MessagePage : BasePage
 
         WriteFooter();
     }
-
-    #endregion
 }

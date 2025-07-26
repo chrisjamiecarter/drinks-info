@@ -5,8 +5,6 @@
 /// </summary>
 public static class ApiRoutes
 {
-    #region Constants - Private
-
     private const string Root = "https://www.thecocktaildb.com/api/json";
 
     private const string Version = "v1";
@@ -15,9 +13,6 @@ public static class ApiRoutes
 
     private const string Base = @$"{Root}\{Version}\{Key}";
 
-    #endregion
-    #region Constants - Public 
-
     public const string GetCategories = $"{Base}/list.php?c=list";
 
     public const string GetDrink = $"{Base}/lookup.php?i={{drinkId}}";
@@ -25,6 +20,4 @@ public static class ApiRoutes
     public const string GetDrinksByCategory = $"{Base}/filter.php?c={{category}}";
 
     public const string GetRandomDrink = $"{Base}/random.php";
-
-    #endregion
 }

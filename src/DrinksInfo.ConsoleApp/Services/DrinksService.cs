@@ -10,8 +10,6 @@ namespace DrinksInfo.ConsoleApp.Services;
 /// </summary>
 internal static class DrinksService
 {
-    #region Methods
-
     internal static Drink? GetDrink(string drinkId)
     {
         Drink? drink = null;
@@ -53,6 +51,4 @@ internal static class DrinksService
 
         return drink;
     }
-
-    #endregion
 }

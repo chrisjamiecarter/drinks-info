@@ -7,8 +7,6 @@ namespace DrinksInfo.Contracts.V1;
 /// </summary>
 public class Drink
 {
-    #region Properties
-
     [JsonProperty("idDrink")]
     public string? Id { get; set; }
 
@@ -143,6 +141,4 @@ public class Drink
 
     [JsonProperty("dateModified")]
     public string? DateModified { get; set; }
-
-    #endregion
 }

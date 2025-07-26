@@ -10,12 +10,7 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// </summary>
 internal class SelectCategoryNamePage : BasePage
 {
-    #region Constants
-
     private const string PageTitle = "Select Category";
-
-    #endregion
-    #region Properties
 
     internal static IEnumerable<UserChoice> PageChoices
     {
@@ -27,9 +22,6 @@ internal class SelectCategoryNamePage : BasePage
             ];
         }
     }
-
-    #endregion
-    #region Methods - Internal
 
     /// <summary>
     /// Gets a list of categories from the drinks controller displays for user selection.
@@ -52,9 +44,6 @@ internal class SelectCategoryNamePage : BasePage
         return option.Id == 0 ? null : option.Name;
     }
 
-    #endregion
-    #region Methods - Private
-
     private static UserChoice GetOption(IReadOnlyList<Category> categories)
     {
         // Add the list to the existing PageChoices
@@ -70,6 +59,4 @@ internal class SelectCategoryNamePage : BasePage
                 .UseConverter(c => c.Name!)
                 );
     }
-
-    #endregion
 }

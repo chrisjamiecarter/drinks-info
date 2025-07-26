@@ -10,8 +10,6 @@ namespace DrinksInfo.ConsoleApp.Engines;
 /// </summary>
 internal class TableEngine
 {
-    #region Methods
-
     internal static Table GetCategoriesTable(IReadOnlyList<Category> categories)
     {
         Table table = new Table();
@@ -76,6 +74,4 @@ internal class TableEngine
 
         return table;
     }
-
-    #endregion
 }
