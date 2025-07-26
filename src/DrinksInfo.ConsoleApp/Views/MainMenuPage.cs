@@ -1,8 +1,9 @@
 ﻿using DrinksInfo.ConsoleApp.Engines;
 using DrinksInfo.ConsoleApp.Enums;
-using DrinksInfo.ConsoleApp.Models;
+using DrinksInfo.ConsoleApp.Extensions;
 using DrinksInfo.ConsoleApp.Services;
 using Spectre.Console;
+using System.ComponentModel;
 
 namespace DrinksInfo.ConsoleApp.Views;
 
@@ -11,63 +12,47 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// </summary>
 internal class MainMenuPage : BasePage
 {
-    #region Constants
-
-    private const string PageTitle = "Main Menu";
-
-    #endregion
-    #region Properties
-
-    internal static IEnumerable<UserChoice> PageChoices
+    private enum MainMenuPageChoices
     {
-        get
-        {
-            return
-            [
-                new(1, "Select drink by category"),
-                new(2, "Random drink"),
-                new(0, "Close application")
-            ];
-        }
+        [Description("Select drink by category")]
+        SelectDrinkByCategory = 0,
+        [Description("Random drink")]
+        RandomDrink = 1,
+        [Description("Close application")]
+        CloseApplication = 2,
     }
 
-    #endregion
-    #region Methods - Internal
-
+    private const string PageTitle = "Main Menu";
+    
     internal static void Show()
     {
         var status = PageStatus.Opened;
 
         while (status != PageStatus.Closed)
         {
-            AnsiConsole.Clear();
-
             WriteHeader(PageTitle);
 
             var option = AnsiConsole.Prompt(
-                new SelectionPrompt<UserChoice>()
+                new SelectionPrompt<MainMenuPageChoices>()
                 .Title(PromptTitle)
-                .AddChoices(PageChoices)
-                .UseConverter(c => c.Name!)
+                .AddChoices(Enum.GetValues<MainMenuPageChoices>())
+                .UseConverter(c => c.GetDescription())
                 );
 
-            status = PerformOption(option);
+            status = PerformSelectedChoice(option);
         }
     }
 
-    #endregion
-    #region Methods - Private
-
-    private static PageStatus PerformOption(UserChoice option)
+    private static PageStatus PerformSelectedChoice(MainMenuPageChoices choice)
     {
-        switch (option.Id)
+        switch (choice)
         {
-            case 1:
+            case MainMenuPageChoices.SelectDrinkByCategory:
 
                 SelectDrinkByCategory();
                 break;
 
-            case 2:
+            case MainMenuPageChoices.RandomDrink:
 
                 ViewRandomDrink();
                 break;
@@ -107,6 +92,4 @@ internal class MainMenuPage : BasePage
 
         MessagePage.Show("Random Drink", table);
     }
-
-    #endregion
 }
