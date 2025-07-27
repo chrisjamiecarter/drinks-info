@@ -1,6 +1,6 @@
-﻿using DrinksInfo.ConsoleApp.Models;
+﻿using DrinksInfo.Application.Models;
+using DrinksInfo.ConsoleApp.Models;
 using DrinksInfo.ConsoleApp.Services;
-using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
@@ -28,17 +28,17 @@ internal class SelectDrinkPage(DrinkService drinkService) : BasePage
     /// </summary>
     /// <param name="category">The category of the drinks to be displayed.</param>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
-    internal Drink? Show(string category)
+    internal async Task<Drink?> ShowAsync(string category)
     {
         WriteHeader(PageTitle);
 
-        var drinks = drinkService.GetDrinksByCategory(category);
+        var drinks = await drinkService.GetDrinksByCategoryAsync(category);
 
         var option = GetOption(drinks);
 
         return option.Id == 0 
             ? null 
-            : drinkService.GetDrink(drinks.First(x => x.Name == option.Name).Id);
+            : await drinkService.GetDrinkAsync(drinks.First(x => x.Name == option.Name).Id);
     }
 
     private static UserChoice GetOption(IReadOnlyList<Drink> drinks)

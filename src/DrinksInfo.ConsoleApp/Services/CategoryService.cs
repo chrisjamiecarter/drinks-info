@@ -1,5 +1,5 @@
-﻿using DrinksInfo.Abstractions;
-using DrinksInfo.Models;
+﻿using DrinksInfo.Application.Abstractions;
+using DrinksInfo.Application.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Services;
@@ -12,14 +12,14 @@ internal class CategoryService(IDrinkApiClientProvider clientProvider)
 {
     private readonly IDrinkApiClient client = clientProvider.CreateClient();
 
-    public IReadOnlyList<Category> GetCategories()
+    public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
     {
-        return AnsiConsole
+        return await AnsiConsole
             .Status()
             .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting categories. Please wait...", ctx =>
+            .StartAsync("Getting categories. Please wait...", async ctx =>
             {
-                return client.GetCategoriesAsync().GetAwaiter().GetResult();
+                return await client.GetCategoriesAsync();
             });
     }
 }

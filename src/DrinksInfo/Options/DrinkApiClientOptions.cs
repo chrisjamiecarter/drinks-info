@@ -1,4 +1,4 @@
-﻿namespace DrinksInfo.Options;
+﻿namespace DrinksInfo.Application.Options;
 
 public class DrinkApiClientOptions
 {

@@ -1,8 +1,8 @@
 ﻿using System.Web;
-using DrinksInfo.Options;
+using DrinksInfo.Application.Options;
 using Microsoft.Extensions.Options;
 
-namespace DrinksInfo;
+namespace DrinksInfo.Application;
 
 /// <summary>
 /// The supported API routes in this application.

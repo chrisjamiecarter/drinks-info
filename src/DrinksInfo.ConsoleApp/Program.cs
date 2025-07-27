@@ -1,8 +1,9 @@
-﻿using DrinksInfo.Abstractions;
+﻿using DrinksInfo.Application;
+using DrinksInfo.Application.Abstractions;
+using DrinksInfo.Application.Factories;
+using DrinksInfo.Application.Options;
 using DrinksInfo.ConsoleApp.Services;
 using DrinksInfo.ConsoleApp.Views;
-using DrinksInfo.Factories;
-using DrinksInfo.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,7 +15,7 @@ namespace DrinksInfo.ConsoleApp;
 /// </summary>
 internal class Program
 {
-    internal static void Main()
+    internal static async Task Main()
     {
         using IHost host = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
@@ -33,7 +34,7 @@ internal class Program
         try
         {
             var mainMenuPage = host.Services.GetRequiredService<MainMenuPage>();
-            mainMenuPage.Show();
+            await mainMenuPage.ShowAsync();
         }
         catch (Exception exception)
         {

@@ -1,5 +1,5 @@
-﻿using DrinksInfo.Abstractions;
-using DrinksInfo.Models;
+﻿using DrinksInfo.Application.Abstractions;
+using DrinksInfo.Application.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Services;
@@ -12,36 +12,36 @@ internal class DrinkService(IDrinkApiClientProvider clientProvider)
 {
     private readonly IDrinkApiClient client  = clientProvider.CreateClient();
 
-    public Drink? GetDrink(string drinkId)
+    public async Task<Drink?> GetDrinkAsync(string drinkId)
     {
-        return AnsiConsole
+        return await AnsiConsole
             .Status()
             .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting selected drink. Please wait...", ctx =>
+            .StartAsync("Getting selected drink. Please wait...", async ctx =>
             {
-                return client.GetDrinkByIdAsync(drinkId).GetAwaiter().GetResult();
+                return await client.GetDrinkByIdAsync(drinkId);
             });
     }
 
-    public IReadOnlyList<Drink> GetDrinksByCategory(string category)
+    public async Task<IReadOnlyList<Drink>> GetDrinksByCategoryAsync(string category)
     {
-        return AnsiConsole
+        return await AnsiConsole
             .Status()
             .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting drinks. Please wait...", ctx =>
+            .StartAsync("Getting drinks. Please wait...", async ctx =>
             {
-                return client.GetDrinksByCategoryNameAsync(category).GetAwaiter().GetResult();
+                return await client.GetDrinksByCategoryNameAsync(category);
             });
     }
 
-    public Drink? GetRandomDrink()
+    public async Task<Drink?> GetRandomDrinkAsync()
     {
-        return AnsiConsole
+        return await AnsiConsole
             .Status()
             .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting random drink. Please wait...", ctx =>
+            .StartAsync("Getting random drink. Please wait...", async ctx =>
             {
-                return client.GetRandomDrinkAsync().GetAwaiter().GetResult();
+                return await client.GetRandomDrinkAsync();
             });
     }
 }

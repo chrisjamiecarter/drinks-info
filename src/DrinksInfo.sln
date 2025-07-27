@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinksInfo", "DrinksInfo\DrinksInfo.csproj", "{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinksInfo.Application", "DrinksInfo\DrinksInfo.Application.csproj", "{69AB4F7F-B516-4A51-BCA4-317DCCE1A830}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinksInfo.ConsoleApp", "DrinksInfo.ConsoleApp\DrinksInfo.ConsoleApp.csproj", "{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9}"
 EndProject

@@ -1,6 +1,6 @@
-﻿using DrinksInfo.Models;
+﻿using DrinksInfo.Application.Models;
 
-namespace DrinksInfo.Abstractions;
+namespace DrinksInfo.Application.Abstractions;
 
 /// <summary>
 /// Defines the contract for a client that interacts with a drink API.

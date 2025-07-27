@@ -1,4 +1,4 @@
-﻿namespace DrinksInfo.Models;
+﻿namespace DrinksInfo.Application.Models;
 
 /// <summary>
 /// The domain model for a drink category.

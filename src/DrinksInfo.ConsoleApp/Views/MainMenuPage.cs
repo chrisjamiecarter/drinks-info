@@ -26,7 +26,7 @@ internal class MainMenuPage(DrinkService drinkService,
 
     private const string PageTitle = "Main Menu";
 
-    public void Show()
+    public async Task ShowAsync()
     {
         var status = PageStatus.Opened;
 
@@ -41,22 +41,22 @@ internal class MainMenuPage(DrinkService drinkService,
                 .UseConverter(c => c.GetDescription())
                 );
 
-            status = PerformSelectedChoice(option);
+            status = await PerformSelectedChoiceAsync(option);
         }
     }
 
-    private PageStatus PerformSelectedChoice(MainMenuPageChoices choice)
+    private async Task<PageStatus> PerformSelectedChoiceAsync(MainMenuPageChoices choice)
     {
         switch (choice)
         {
             case MainMenuPageChoices.SelectDrinkByCategory:
 
-                SelectDrinkByCategory();
+                await SelectDrinkByCategoryAsync();
                 break;
 
             case MainMenuPageChoices.RandomDrink:
 
-                ViewRandomDrink();
+                await ViewRandomDrink();
                 break;
 
             default:
@@ -67,31 +67,29 @@ internal class MainMenuPage(DrinkService drinkService,
         return PageStatus.Opened;
     }
 
-    private void SelectDrinkByCategory()
+    private async Task SelectDrinkByCategoryAsync()
     {
-        var categoryName = selectCategoryNamePage.Show();
-        if (categoryName == null)
+        var categoryName = await selectCategoryNamePage.ShowAsync();
+        if (categoryName is null)
         {
             return;
         }
 
-        var drink = selectDrinkPage.Show(categoryName);
-        if (drink == null)
+        var drink = await selectDrinkPage.ShowAsync(categoryName);
+        if (drink is null)
         {
             return;
         }
 
         var table = TableEngine.GetDrinkTable(drink);
-
         MessagePage.Show("Selected Drink", table);
     }
 
-    private void ViewRandomDrink()
+    private async Task ViewRandomDrink()
     {
-        var drink = drinkService.GetRandomDrink();
+        var drink = await drinkService.GetRandomDrinkAsync();
 
-        var table = TableEngine.GetDrinkTable(drink!);
-
+        var table = TableEngine.GetDrinkTable(drink);
         MessagePage.Show("Random Drink", table);
     }
 }

@@ -1,6 +1,6 @@
-﻿using DrinksInfo.ConsoleApp.Models;
+﻿using DrinksInfo.Application.Models;
+using DrinksInfo.ConsoleApp.Models;
 using DrinksInfo.ConsoleApp.Services;
-using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
@@ -27,11 +27,11 @@ internal class SelectCategoryNamePage(CategoryService categoryService) : BasePag
     /// Shows a list of categories and gets the users selection.
     /// </summary>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
-    internal string? Show()
+    internal async Task<string?> ShowAsync()
     {
         WriteHeader(PageTitle);
         
-        var categories = categoryService.GetCategories();
+        var categories = await categoryService.GetCategoriesAsync();
 
         var option = GetOption(categories);
 

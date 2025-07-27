@@ -1,7 +1,7 @@
-﻿using DrinksInfo.Contracts.Responses.V1;
-using DrinksInfo.Models;
+﻿using DrinksInfo.Application.Models;
+using DrinksInfo.Contracts.Responses.V1;
 
-namespace DrinksInfo.Mappings.V1;
+namespace DrinksInfo.Application.Mappings.V1;
 
 internal static class DrinkMapping
 {

@@ -1,8 +1,8 @@
-﻿using DrinksInfo.Abstractions;
-using DrinksInfo.Options;
+﻿using DrinksInfo.Application.Abstractions;
+using DrinksInfo.Application.Options;
 using Microsoft.Extensions.Options;
 
-namespace DrinksInfo.Factories;
+namespace DrinksInfo.Application.Factories;
 
 public class DrinkApiClientFactory : IDrinkApiClientProvider
 {

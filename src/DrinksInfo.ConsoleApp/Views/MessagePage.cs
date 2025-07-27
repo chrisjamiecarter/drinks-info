@@ -7,6 +7,15 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// </summary>
 internal class MessagePage : BasePage
 {
+    public static void Show(string title, string body)
+    {
+        WriteHeader(title);
+
+        AnsiConsole.Write(body);
+
+        WriteFooter();
+    }
+
     public static void Show(string title, Table table)
     {
         WriteHeader(title);

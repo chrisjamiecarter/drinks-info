@@ -1,11 +1,12 @@
-﻿using DrinksInfo.Abstractions;
+﻿using DrinksInfo.Application;
+using DrinksInfo.Application.Abstractions;
+using DrinksInfo.Application.Mappings.V1;
+using DrinksInfo.Application.Models;
 using DrinksInfo.Contracts.Responses.V1;
-using DrinksInfo.Mappings.V1;
-using DrinksInfo.Models;
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace DrinksInfo.Clients.V1;
+namespace DrinksInfo.Application.Clients.V1;
 
 /// <summary>
 /// The client for accessing the Drink API.
