@@ -10,7 +10,9 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// <summary>
 /// The main menu page of the application.
 /// </summary>
-internal class MainMenuPage : BasePage
+internal class MainMenuPage(DrinkService drinkService,
+                            SelectCategoryNamePage selectCategoryNamePage,
+                            SelectDrinkPage selectDrinkPage) : BasePage
 {
     private enum MainMenuPageChoices
     {
@@ -23,8 +25,8 @@ internal class MainMenuPage : BasePage
     }
 
     private const string PageTitle = "Main Menu";
-    
-    internal static void Show()
+
+    public void Show()
     {
         var status = PageStatus.Opened;
 
@@ -43,7 +45,7 @@ internal class MainMenuPage : BasePage
         }
     }
 
-    private static PageStatus PerformSelectedChoice(MainMenuPageChoices choice)
+    private PageStatus PerformSelectedChoice(MainMenuPageChoices choice)
     {
         switch (choice)
         {
@@ -65,15 +67,15 @@ internal class MainMenuPage : BasePage
         return PageStatus.Opened;
     }
 
-    private static void SelectDrinkByCategory()
+    private void SelectDrinkByCategory()
     {
-        var categoryName = SelectCategoryNamePage.Show();
+        var categoryName = selectCategoryNamePage.Show();
         if (categoryName == null)
         {
             return;
         }
 
-        var drink = SelectDrinkPage.Show(categoryName);
+        var drink = selectDrinkPage.Show(categoryName);
         if (drink == null)
         {
             return;
@@ -84,9 +86,9 @@ internal class MainMenuPage : BasePage
         MessagePage.Show("Selected Drink", table);
     }
 
-    private static void ViewRandomDrink()
+    private void ViewRandomDrink()
     {
-        var drink = DrinksService.GetRandomDrink();
+        var drink = drinkService.GetRandomDrink();
 
         var table = TableEngine.GetDrinkTable(drink!);
 

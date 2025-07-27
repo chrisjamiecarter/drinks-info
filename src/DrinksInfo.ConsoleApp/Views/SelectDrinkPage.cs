@@ -8,11 +8,11 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// <summary>
 /// A page to displays a list of drinks for selection.
 /// </summary>
-internal class SelectDrinkPage : BasePage
+internal class SelectDrinkPage(DrinkService drinkService) : BasePage
 {
     private const string PageTitle = "Select Drink";
     
-    internal static IEnumerable<UserChoice> PageChoices
+    private static IEnumerable<UserChoice> PageChoices
     {
         get
         {
@@ -24,26 +24,21 @@ internal class SelectDrinkPage : BasePage
     }
 
     /// <summary>
-    /// Gets a list of drinks from the drink api client for a given category and displays for user selection.
+    /// Shows a list of drinks and gets the users selection.
     /// </summary>
     /// <param name="category">The category of the drinks to be displayed.</param>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
-    internal static Drink? Show(string category)
+    internal Drink? Show(string category)
     {
-        var drinks = DrinksService.GetDrinksByCategory(category);
-
         WriteHeader(PageTitle);
+
+        var drinks = drinkService.GetDrinksByCategory(category);
 
         var option = GetOption(drinks);
 
-        if (option.Id == 0)
-        {
-            return null;
-        }
-        else
-        {
-            return DrinksService.GetDrink(drinks.First(x => x.Name == option.Name).Id!);
-        }
+        return option.Id == 0 
+            ? null 
+            : drinkService.GetDrink(drinks.First(x => x.Name == option.Name).Id);
     }
 
     private static UserChoice GetOption(IReadOnlyList<Drink> drinks)

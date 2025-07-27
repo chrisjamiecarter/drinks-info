@@ -1,5 +1,5 @@
-﻿using DrinksInfo.Clients.V1;
-using DrinksInfo.ConsoleApp.Models;
+﻿using DrinksInfo.ConsoleApp.Models;
+using DrinksInfo.ConsoleApp.Services;
 using DrinksInfo.Models;
 using Spectre.Console;
 
@@ -8,7 +8,7 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// <summary>
 /// A page to displays a list of categories for selection.
 /// </summary>
-internal class SelectCategoryNamePage : BasePage
+internal class SelectCategoryNamePage(CategoryService categoryService) : BasePage
 {
     private const string PageTitle = "Select Category";
 
@@ -24,22 +24,14 @@ internal class SelectCategoryNamePage : BasePage
     }
 
     /// <summary>
-    /// Gets a list of categories from the drink api client displays for user selection.
+    /// Shows a list of categories and gets the users selection.
     /// </summary>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
-    internal static string? Show()
+    internal string? Show()
     {
-        IReadOnlyList<Category> categories = [];
-
-        AnsiConsole.Status()
-            .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting categories. Please wait...", async ctx =>
-            {
-                var client  = new DrinkApiClient();
-                categories = client.GetCategoriesAsync().GetAwaiter().GetResult();
-            });
-
         WriteHeader(PageTitle);
+        
+        var categories = categoryService.GetCategories();
 
         var option = GetOption(categories);
 

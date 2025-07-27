@@ -1,22 +1,39 @@
-﻿using DrinksInfo.ConsoleApp.Views;
+﻿using DrinksInfo.Clients.V1;
+using DrinksInfo.ConsoleApp.Services;
+using DrinksInfo.ConsoleApp.Views;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace DrinksInfo.ConsoleApp;
 
+/// <summary>
+/// The entry point for the application.
+/// Configures the required services and middleware before running the application.
+/// </summary>
 internal class Program
 {
-    /// <summary>
-    /// Insertion point for the application.
-    /// Launches the main menu; catches and displays any errors.
-    /// </summary>
-    static void Main()
+    internal static void Main()
     {
+        using IHost host = Host.CreateDefaultBuilder()
+            .ConfigureServices((context, services) =>
+            {
+                services.AddScoped<CategoryService>();
+                services.AddScoped<DrinkService>();
+                services.AddScoped<DrinkApiClient>();
+                services.AddTransient<MainMenuPage>();
+                services.AddTransient<SelectCategoryNamePage>();
+                services.AddTransient<SelectDrinkPage>();
+            })
+            .Build();
+
         try
         {
-            MainMenuPage.Show();
+            var mainMenuPage = host.Services.GetRequiredService<MainMenuPage>();
+            mainMenuPage.Show();
         }
         catch (Exception exception)
         {
-            MessagePage.Show("Error", exception);
+            ErrorPage.Show(exception);
         }
         finally
         {

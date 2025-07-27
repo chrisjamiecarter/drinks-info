@@ -7,21 +7,8 @@ namespace DrinksInfo.ConsoleApp.Views;
 /// </summary>
 internal class MessagePage : BasePage
 {
-    internal static void Show(string title, Exception exception)
+    public static void Show(string title, Table table)
     {
-        AnsiConsole.Clear();
-
-        WriteHeader(title);
-
-        AnsiConsole.WriteException(exception, ExceptionFormats.NoStackTrace);
-
-        WriteFooter();
-    }
-
-    internal static void Show(string title, Table table)
-    {
-        AnsiConsole.Clear();
-
         WriteHeader(title);
 
         AnsiConsole.Write(table);

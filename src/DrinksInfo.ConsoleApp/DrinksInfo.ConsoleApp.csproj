@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="ConsoleTableExt" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.7" />
     <PackageReference Include="Spectre.Console" Version="0.50.0" />
   </ItemGroup>
 
