@@ -1,4 +1,4 @@
-﻿namespace DrinksInfo.Contracts.V1;
+﻿namespace DrinksInfo;
 
 /// <summary>
 /// The supported API routes in this application.
@@ -15,7 +15,7 @@ public static class ApiRoutes
 
     public const string GetCategories = $"{Base}/list.php?c=list";
 
-    public const string GetDrink = $"{Base}/lookup.php?i={{drinkId}}";
+    public const string GetDrink = $"{Base}/lookup.php?i={{id}}";
 
     public const string GetDrinksByCategory = $"{Base}/filter.php?c={{category}}";
 

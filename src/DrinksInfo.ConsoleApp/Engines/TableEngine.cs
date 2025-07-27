@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using ConsoleTableExt;
-using DrinksInfo.Contracts.V1;
+using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Engines;

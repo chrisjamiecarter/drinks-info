@@ -1,6 +1,6 @@
 ﻿using DrinksInfo.ConsoleApp.Models;
 using DrinksInfo.ConsoleApp.Services;
-using DrinksInfo.Contracts.V1;
+using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
@@ -24,7 +24,7 @@ internal class SelectDrinkPage : BasePage
     }
 
     /// <summary>
-    /// Gets a list of drinks from the drinks controller for a given category and displays for user selection.
+    /// Gets a list of drinks from the drink api client for a given category and displays for user selection.
     /// </summary>
     /// <param name="category">The category of the drinks to be displayed.</param>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>

@@ -1,11 +1,11 @@
-﻿using DrinksInfo.Contracts.V1;
-using DrinksInfo.Controllers.V1;
+﻿using DrinksInfo.Clients.V1;
+using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Services;
 
 /// <summary>
-/// Service to interact with the DrinksController.
+/// Service to interact with the DrinkApiClient.
 /// Uses Status and Spinner due to delay in API reponse times.
 /// </summary>
 internal static class DrinksService
@@ -18,7 +18,8 @@ internal static class DrinksService
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting selected drink. Please wait...", ctx =>
             {
-                drink = DrinksController.GetDrink(drinkId);
+                var client = new DrinkApiClient();
+                drink = client.GetDrinkByIdAsync(drinkId).GetAwaiter().GetResult();
             });
 
         return drink;
@@ -32,7 +33,8 @@ internal static class DrinksService
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting drinks. Please wait...", ctx =>
             {
-                drinks = DrinksController.GetDrinksByCategory(category);
+                var client = new DrinkApiClient();
+                drinks = client.GetDrinksByCategoryNameAsync(category).GetAwaiter().GetResult();
             });
 
         return drinks;
@@ -46,7 +48,8 @@ internal static class DrinksService
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting random drink. Please wait...", ctx =>
             {
-                drink = DrinksController.GetRandomDrink();
+                var client = new DrinkApiClient();
+                drink = client.GetRandomDrinkAsync().GetAwaiter().GetResult();
             });
 
         return drink;

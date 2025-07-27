@@ -1,6 +1,6 @@
-﻿using DrinksInfo.ConsoleApp.Models;
-using DrinksInfo.Contracts.V1;
-using DrinksInfo.Controllers.V1;
+﻿using DrinksInfo.Clients.V1;
+using DrinksInfo.ConsoleApp.Models;
+using DrinksInfo.Models;
 using Spectre.Console;
 
 namespace DrinksInfo.ConsoleApp.Views;
@@ -24,17 +24,19 @@ internal class SelectCategoryNamePage : BasePage
     }
 
     /// <summary>
-    /// Gets a list of categories from the drinks controller displays for user selection.
+    /// Gets a list of categories from the drink api client displays for user selection.
     /// </summary>
     /// <returns>The name of the category selected, or null if user wants to close the page.</returns>
     internal static string? Show()
     {
         IReadOnlyList<Category> categories = [];
+
         AnsiConsole.Status()
             .Spinner(Spinner.Known.Aesthetic)
-            .Start("Getting categories. Please wait...", ctx =>
+            .Start("Getting categories. Please wait...", async ctx =>
             {
-                categories = DrinksController.GetCategories();
+                var client  = new DrinkApiClient();
+                categories = client.GetCategoriesAsync().GetAwaiter().GetResult();
             });
 
         WriteHeader(PageTitle);

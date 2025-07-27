@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace DrinksInfo.Contracts.V1;
+namespace DrinksInfo.Contracts.Responses.V1;
 
 /// <summary>
 /// A JSON reponse for a drink.
 /// </summary>
-public class Drink
+public class DrinkResponse
 {
     [JsonProperty("idDrink")]
     public string? Id { get; set; }
