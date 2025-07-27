@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinksInfo.Contracts", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9491672A-4639-49CA-AC59-E6901425299B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinksInfo.ConsoleApp.Tests", "tests\DrinksInfo.ConsoleApp.Tests\DrinksInfo.ConsoleApp.Tests.csproj", "{80FADD05-62E3-4B57-8CE4-544CE9B8C621}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{FC4EF617-8F71-4C98-860C-5474ED6CD208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4EF617-8F71-4C98-860C-5474ED6CD208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4EF617-8F71-4C98-860C-5474ED6CD208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FADD05-62E3-4B57-8CE4-544CE9B8C621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FADD05-62E3-4B57-8CE4-544CE9B8C621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FADD05-62E3-4B57-8CE4-544CE9B8C621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FADD05-62E3-4B57-8CE4-544CE9B8C621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{69AB4F7F-B516-4A51-BCA4-317DCCE1A830} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{88A0C79E-3DB8-4E49-A563-F3BBE11E02F9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{FC4EF617-8F71-4C98-860C-5474ED6CD208} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{80FADD05-62E3-4B57-8CE4-544CE9B8C621} = {9491672A-4639-49CA-AC59-E6901425299B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {70CD919F-DE6A-420A-A003-4BEFB1C1999D}

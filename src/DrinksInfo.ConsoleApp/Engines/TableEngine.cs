@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using ConsoleTableExt;
+﻿using ConsoleTableExt;
 using DrinksInfo.Application.Models;
 using Spectre.Console;
+using System.Reflection;
 
 namespace DrinksInfo.ConsoleApp.Engines;
 
