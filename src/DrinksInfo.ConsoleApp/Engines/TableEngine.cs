@@ -18,12 +18,11 @@ internal class TableEngine
     /// <returns>The generated spectre table object.</returns>
     internal static Table GetDrinkTable(Drink? drink)
     {
-        Table table = new Table();
+        var table = new Table();
 
         if (drink is null)
         {
             table.AddColumn("Error");
-            table.HideHeaders();
             table.AddRow("No drink could be retrieved.");
         }
         else
