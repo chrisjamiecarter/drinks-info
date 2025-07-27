@@ -1,11 +1,11 @@
 ﻿using DrinksInfo.Models;
 
-namespace DrinksInfo.Clients;
+namespace DrinksInfo.Abstractions;
 
 /// <summary>
 /// Defines the contract for a client that interacts with a drink API.
 /// </summary>
-internal interface IDrinkApiClient
+public interface IDrinkApiClient
 {
     Task<IReadOnlyList<Category>> GetCategoriesAsync();
     Task<Drink?> GetDrinkByIdAsync(string id);

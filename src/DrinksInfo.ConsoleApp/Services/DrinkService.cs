@@ -1,4 +1,4 @@
-﻿using DrinksInfo.Clients.V1;
+﻿using DrinksInfo.Abstractions;
 using DrinksInfo.Models;
 using Spectre.Console;
 
@@ -8,11 +8,14 @@ namespace DrinksInfo.ConsoleApp.Services;
 /// Service to interact with the DrinkApiClient.
 /// Uses Status and Spinner due to delay in API reponse times.
 /// </summary>
-internal class DrinkService(DrinkApiClient client)
+internal class DrinkService(IDrinkApiClientProvider clientProvider)
 {
+    private readonly IDrinkApiClient client  = clientProvider.CreateClient();
+
     public Drink? GetDrink(string drinkId)
     {
-        return AnsiConsole.Status()
+        return AnsiConsole
+            .Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting selected drink. Please wait...", ctx =>
             {
@@ -22,7 +25,8 @@ internal class DrinkService(DrinkApiClient client)
 
     public IReadOnlyList<Drink> GetDrinksByCategory(string category)
     {
-        return AnsiConsole.Status()
+        return AnsiConsole
+            .Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting drinks. Please wait...", ctx =>
             {
@@ -32,7 +36,8 @@ internal class DrinkService(DrinkApiClient client)
 
     public Drink? GetRandomDrink()
     {
-        return AnsiConsole.Status()
+        return AnsiConsole
+            .Status()
             .Spinner(Spinner.Known.Aesthetic)
             .Start("Getting random drink. Please wait...", ctx =>
             {

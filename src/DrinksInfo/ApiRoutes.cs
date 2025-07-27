@@ -1,23 +1,24 @@
-﻿namespace DrinksInfo;
+﻿using System.Web;
+using DrinksInfo.Options;
+using Microsoft.Extensions.Options;
+
+namespace DrinksInfo;
 
 /// <summary>
 /// The supported API routes in this application.
 /// </summary>
-public static class ApiRoutes
+public class ApiRoutes(IOptions<DrinkApiClientOptions> options)
 {
-    private const string Root = "https://www.thecocktaildb.com/api/json";
+    private readonly DrinkApiClientOptions _options = options.Value;
 
-    private const string Version = "v1";
-
-    private const string Key = "1";
-
-    private const string Base = @$"{Root}\{Version}\{Key}";
-
-    public const string GetCategories = $"{Base}/list.php?c=list";
-
-    public const string GetDrink = $"{Base}/lookup.php?i={{id}}";
-
-    public const string GetDrinksByCategory = $"{Base}/filter.php?c={{category}}";
-
-    public const string GetRandomDrink = $"{Base}/random.php";
+    private string Base => @$"{_options.Root}\{_options.Version}\{_options.Key}";
+ 
+    public string GetCategories => $"{Base}/list.php?c=list";
+    public string GetRandomDrink => $"{Base}/random.php";
+    
+    public string GetDrink(string id) => 
+        $"{Base}/lookup.php?i={HttpUtility.UrlEncode(id)}";
+    
+    public string GetDrinksByCategory(string categoryName) => 
+        $"{Base}/filter.php?c={HttpUtility.UrlEncode(categoryName)}";
 }

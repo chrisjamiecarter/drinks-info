@@ -1,6 +1,8 @@
-﻿using DrinksInfo.Clients.V1;
+﻿using DrinksInfo.Abstractions;
 using DrinksInfo.ConsoleApp.Services;
 using DrinksInfo.ConsoleApp.Views;
+using DrinksInfo.Factories;
+using DrinksInfo.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,9 +19,11 @@ internal class Program
         using IHost host = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
+                services.Configure<DrinkApiClientOptions>(context.Configuration.GetSection(nameof(DrinkApiClientOptions)));
                 services.AddScoped<CategoryService>();
                 services.AddScoped<DrinkService>();
-                services.AddScoped<DrinkApiClient>();
+                services.AddSingleton<IDrinkApiClientProvider, DrinkApiClientFactory>();
+                services.AddSingleton<ApiRoutes>();
                 services.AddTransient<MainMenuPage>();
                 services.AddTransient<SelectCategoryNamePage>();
                 services.AddTransient<SelectDrinkPage>();

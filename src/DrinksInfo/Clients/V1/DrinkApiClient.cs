@@ -1,22 +1,22 @@
-﻿using DrinksInfo.Contracts.Responses.V1;
+﻿using DrinksInfo.Abstractions;
+using DrinksInfo.Contracts.Responses.V1;
 using DrinksInfo.Mappings.V1;
 using DrinksInfo.Models;
 using Newtonsoft.Json;
 using RestSharp;
-using System.Web;
 
 namespace DrinksInfo.Clients.V1;
 
 /// <summary>
 /// The client for accessing the Drink API.
 /// </summary>
-public class DrinkApiClient : IDrinkApiClient
+public class DrinkApiClient(ApiRoutes routes) : IDrinkApiClient
 {
     public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
     {
         using var client = new RestClient();
 
-        var request = new RestRequest(ApiRoutes.GetCategories);
+        var request = new RestRequest(routes.GetCategories);
         var reponse = await client.ExecuteAsync(request);
 
         if (reponse.IsSuccessStatusCode)
@@ -34,7 +34,7 @@ public class DrinkApiClient : IDrinkApiClient
 
     public async Task<Drink?> GetDrinkByIdAsync(string id)
     {
-        var request = new RestRequest(ApiRoutes.GetDrink.Replace("{id}", HttpUtility.UrlEncode(id)));
+        var request = new RestRequest(routes.GetDrink(id));
 
         var drink = await GetDrink(request);
 
@@ -45,7 +45,7 @@ public class DrinkApiClient : IDrinkApiClient
     {
         using var client = new RestClient();
 
-        var request = new RestRequest(ApiRoutes.GetDrinksByCategory.Replace("{category}", HttpUtility.UrlEncode(categoryName)));
+        var request = new RestRequest(routes.GetDrinksByCategory(categoryName));
         var reponse = await client.ExecuteAsync(request);
 
         if (reponse.IsSuccessStatusCode)
@@ -63,7 +63,7 @@ public class DrinkApiClient : IDrinkApiClient
 
     public async Task<Drink?> GetRandomDrinkAsync()
     {
-        var request = new RestRequest(ApiRoutes.GetRandomDrink);
+        var request = new RestRequest(routes.GetRandomDrink);
 
         var drink = await GetDrink(request);
 
