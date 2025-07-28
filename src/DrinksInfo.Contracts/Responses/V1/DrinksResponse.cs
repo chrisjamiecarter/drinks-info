@@ -8,5 +8,5 @@ namespace DrinksInfo.Contracts.Responses.V1;
 public class DrinksResponse
 {
     [JsonProperty("drinks")]
-    public List<DrinkResponse>? Values { get; set; }
+    public DrinkResponse[]? Values { get; set; }
 }
