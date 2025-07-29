@@ -11,7 +11,7 @@ public class ApiRoutes(IOptions<DrinkApiClientOptions> options)
 {
     private readonly DrinkApiClientOptions _options = options.Value;
 
-    private string Base => @$"{_options.Root}\{_options.Version}\{_options.Key}";
+    private string Base => $"{_options.Root}/{_options.Version}/{_options.Key}";
  
     public string GetCategories => $"{Base}/list.php?c=list";
     public string GetRandomDrink => $"{Base}/random.php";

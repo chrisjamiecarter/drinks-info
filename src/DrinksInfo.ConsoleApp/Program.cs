@@ -6,6 +6,7 @@ using DrinksInfo.ConsoleApp.Services;
 using DrinksInfo.ConsoleApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RestSharp;
 
 namespace DrinksInfo.ConsoleApp;
 
@@ -25,6 +26,7 @@ internal class Program
                 services.AddScoped<DrinkService>();
                 services.AddSingleton<IDrinkApiClientProvider, DrinkApiClientFactory>();
                 services.AddSingleton<ApiRoutes>();
+                services.AddTransient<IRestClient, RestClient>();
                 services.AddTransient<MainMenuPage>();
                 services.AddTransient<SelectCategoryNamePage>();
                 services.AddTransient<SelectDrinkPage>();

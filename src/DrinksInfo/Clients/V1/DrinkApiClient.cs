@@ -1,5 +1,4 @@
-﻿using DrinksInfo.Application;
-using DrinksInfo.Application.Abstractions;
+﻿using DrinksInfo.Application.Abstractions;
 using DrinksInfo.Application.Mappings.V1;
 using DrinksInfo.Application.Models;
 using DrinksInfo.Contracts.Responses.V1;
@@ -11,18 +10,16 @@ namespace DrinksInfo.Application.Clients.V1;
 /// <summary>
 /// The client for accessing the Drink API.
 /// </summary>
-public class DrinkApiClient(ApiRoutes routes) : IDrinkApiClient
+public class DrinkApiClient(ApiRoutes routes, IRestClient restClient) : IDrinkApiClient
 {
     public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
     {
-        using var client = new RestClient();
-
         var request = new RestRequest(routes.GetCategories);
-        var reponse = await client.ExecuteAsync(request);
+        var response = await restClient.GetAsync(request);
 
-        if (reponse.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
-            var content = reponse.Content;
+            var content = response.Content;
             if (!string.IsNullOrEmpty(content))
             {
                 var categories = JsonConvert.DeserializeObject<CategoriesResponse>(content)?.Values ?? [];
@@ -44,10 +41,8 @@ public class DrinkApiClient(ApiRoutes routes) : IDrinkApiClient
 
     public async Task<IReadOnlyList<Drink>> GetDrinksByCategoryNameAsync(string categoryName)
     {
-        using var client = new RestClient();
-
         var request = new RestRequest(routes.GetDrinksByCategory(categoryName));
-        var reponse = await client.ExecuteAsync(request);
+        var reponse = await restClient.GetAsync(request);
 
         if (reponse.IsSuccessStatusCode)
         {
@@ -71,11 +66,9 @@ public class DrinkApiClient(ApiRoutes routes) : IDrinkApiClient
         return drink?.ToDrink();
     }
 
-    private static async Task<DrinkResponse?> GetDrink(RestRequest request)
+    private async Task<DrinkResponse?> GetDrink(RestRequest request)
     {
-        using var client = new RestClient();
-
-        var reponse = await client.ExecuteAsync(request);
+        var reponse = await restClient.GetAsync(request);
 
         if (reponse.IsSuccessStatusCode)
         {
