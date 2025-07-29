@@ -10,4 +10,8 @@
     <ProjectReference Include="..\DrinksInfo.Contracts\DrinksInfo.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="DrinksInfo.Application.Tests" />
+  </ItemGroup>
+
 </Project>
